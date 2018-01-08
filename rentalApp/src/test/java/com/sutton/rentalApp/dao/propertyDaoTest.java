@@ -60,7 +60,7 @@ public class propertyDaoTest {
 
 
     @Test
-    public void shouldAddPropertyToDatabaseAndReturnTrue(){
+    public void shouldAddPropertyToDatabaseAndReturnTrue() {
         PropertyDao propertyDao = new PropertyDaoImpl(jdbcTemplate);
         Property property = new Property();
         property.setName("house2");
@@ -77,8 +77,9 @@ public class propertyDaoTest {
         property.setCurrentIncome(500);
         Assert.assertEquals(true, propertyDao.addProperty(property));
     }
+
     @Test
-    public void shouldTryToAddPropertyAndReturnFalse(){
+    public void shouldTryToAddPropertyAndReturnFalse() {
         PropertyDao propertyDao = new PropertyDaoImpl(jdbcTemplate);
         Property property = new Property();
         property.setName("house2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");

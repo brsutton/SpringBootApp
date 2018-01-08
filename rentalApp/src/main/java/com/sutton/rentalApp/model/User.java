@@ -2,6 +2,7 @@ package com.sutton.rentalApp.model;
 import java.io.Serializable;
 
 public class User implements Serializable {
+    private int id;
     private String login;
     private String password;
     private String salt;
@@ -46,5 +47,13 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

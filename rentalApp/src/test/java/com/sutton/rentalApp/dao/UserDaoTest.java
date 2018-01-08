@@ -33,7 +33,16 @@ public class UserDaoTest {
 
     @Before
     public void setUpDatabase() {
-        jdbcTemplate.execute("create table users(login varchar(10) NOT NULL, password varchar(60) NOT NULL, salt varchar(12) NOT NULL, name varchar(50), email varchar(40), PRIMARY KEY(login))");
+        jdbcTemplate.execute("CREATE TABLE `users` (\n" +
+                "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
+                "  `login` VARCHAR(20) NOT NULL,\n" +
+                "  `password` VARCHAR(45) NULL,\n" +
+                "  `salt` VARCHAR(15) NULL,\n" +
+                "  `name` VARCHAR(45) NULL,\n" +
+                "  `email` VARCHAR(45) NULL,\n" +
+                "  PRIMARY KEY (`id`),\n" +
+                "  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\n" +
+                "  UNIQUE INDEX `login_UNIQUE` (`login` ASC));");
         jdbcTemplate.execute("insert into users (login, password, salt, name, email) values('brian', '�گ�+˩n�����\\u001a������!���k�\\u000b��', 'J!f%GSUOh^h', 'Brian Sutton', 'brian@yash')");
     }
 
