@@ -59,7 +59,8 @@ public class TenantDaoTest {
 
     @Test
     public void shouldGetTenantFromDatabase() {
-        Assert.assertEquals(true, true);
+        TenantDao tenantDao = new TenantDaoImpl(jdbcTemplate);
+        Assert.assertEquals("John", tenantDao.getTenantById(1).getFirstName());
     }
 
     @Test

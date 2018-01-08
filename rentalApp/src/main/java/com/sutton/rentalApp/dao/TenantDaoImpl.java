@@ -1,11 +1,13 @@
 package com.sutton.rentalApp.dao;
 
 import com.sutton.rentalApp.model.Tenant;
+import com.sutton.rentalApp.model.Unit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 @Repository
 public class TenantDaoImpl implements TenantDao {
@@ -52,5 +54,21 @@ public class TenantDaoImpl implements TenantDao {
         }
 
         return success;
+    }
+
+    @Override
+    public Tenant getTenantById(int id) {
+        List<Tenant> units = null;
+        Tenant tenant = null;
+        String sql = "SELECT * FROM tenant where id = ?;";
+        try {
+            units = jdbcTemplate.query(sql, new TenantRowMapper(), new Object[]{id});
+            if (units.size() != 0) {
+                tenant = units.get(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tenant;
     }
 }

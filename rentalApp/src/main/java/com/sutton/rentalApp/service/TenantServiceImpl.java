@@ -15,4 +15,9 @@ public class TenantServiceImpl implements TenantService {
     public boolean addTenant(Tenant tenant) {
         return tenantDao.addTenant(tenant);
     }
+
+    @Override
+    public Tenant getTenantById(int id) {
+        return tenantDao.getTenantById(id);
+    }
 }
