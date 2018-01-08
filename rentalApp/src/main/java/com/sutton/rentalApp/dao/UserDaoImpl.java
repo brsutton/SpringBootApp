@@ -36,11 +36,17 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByLogin(String login) {
         String sql = "select * from users where login = ?";
-        List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), new Object[]{login});
-        if (users.size() == 0) {
-            users.add(new User());
+        List<User> users = null;
+        User user = null;
+        try {
+            users = jdbcTemplate.query(sql, new UserRowMapper(), new Object[]{login});
+            if (users.size() != 0) {
+                user = users.get(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return users.get(0);
+        return user;
     }
 
     @Override
@@ -50,7 +56,7 @@ public class UserDaoImpl implements UserDao {
         int result = 0;
         try {
             result = jdbcTemplate.update(sql, user.getLogin(), user.getPassword(), user.getSalt(), user.getName(), user.getEmail());
-            if(result==0){
+            if (result == 0) {
                 success = false;
             }
         } catch (Exception e) {

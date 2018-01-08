@@ -59,10 +59,10 @@ public class UserDaoTest {
     }
 
     @Test
-    public void shouldReturnBlankUserIfUserIsNotInDatabase() {
+    public void shouldReturnNullIfUserIsNotInDatabase() {
         UserDao userDao = new UserDaoImpl(jdbcTemplate);
         User user = userDao.getUserByLogin("bran");
-        Assert.assertEquals(null, user.getName());
+        Assert.assertEquals(null, user);
     }
     @Test
     public void shouldAddUserToDatabase(){
