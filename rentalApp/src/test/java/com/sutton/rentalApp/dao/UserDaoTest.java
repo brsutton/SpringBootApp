@@ -43,7 +43,9 @@ public class UserDaoTest {
                 "  PRIMARY KEY (`id`),\n" +
                 "  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\n" +
                 "  UNIQUE INDEX `login_UNIQUE` (`login` ASC));");
-        jdbcTemplate.execute("insert into users (login, password, salt, name, email) values('brian', '�گ�+˩n�����\\u001a������!���k�\\u000b��', 'J!f%GSUOh^h', 'Brian Sutton', 'brian@yash')");
+        jdbcTemplate.execute("insert into users (login, password, salt, name, email) " +
+                "values('john', '�گ�+˩n�����\\u001a������!���k�\\u000b��', 'J!f%GSUOh^h', " +
+                "'John', 'John@Doe')");
     }
 
     @After
@@ -54,21 +56,21 @@ public class UserDaoTest {
     @Test
     public void shouldGetUserFromDatabaseByUserLogin() {
         UserDao userDao = new UserDaoImpl(jdbcTemplate);
-        User user = userDao.getUserByLogin("brian");
-        Assert.assertEquals("brian", user.getLogin());
+        User user = userDao.getUserByLogin("john");
+        Assert.assertEquals("john", user.getLogin());
     }
 
     @Test
     public void shouldReturnNullIfUserIsNotInDatabase() {
         UserDao userDao = new UserDaoImpl(jdbcTemplate);
-        User user = userDao.getUserByLogin("bran");
+        User user = userDao.getUserByLogin("joe");
         Assert.assertEquals(null, user);
     }
     @Test
     public void shouldAddUserToDatabase(){
         UserDao userDao = new UserDaoImpl(jdbcTemplate);
         User user = new User();
-        user.setLogin("john");
+        user.setLogin("john2");
         user.setPassword("�گ�+˩n�����\u001A������!���k�\u000B��");
         user.setSalt("J!f%GSUOh^h");
         user.setName("John Doe");

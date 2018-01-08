@@ -51,7 +51,10 @@ public class propertyDaoTest {
                 "  `currentIncome` DOUBLE NULL,\n" +
                 "  PRIMARY KEY (`id`),\n" +
                 "  UNIQUE INDEX `id_UNIQUE` (`id` ASC));");
-        jdbcTemplate.execute("INSERT INTO `property` (`name`, `streetAddress`, `city`, `state`, `zipCode`, `numberOfUnits`, `managerId`, `ownerId`, `openUnits`, `occupiedUnits`, `maintenanceCost`, `currentIncome`) VALUES ('HouseOne', '212 W Quarry', 'Maquoketa', 'Iowa', '52060', '1', '1', '1', '0', '1', '100', '500');");
+        jdbcTemplate.execute("INSERT INTO `property` (`name`, `streetAddress`, `city`, `state`, " +
+                "`zipCode`, `numberOfUnits`, `managerId`, `ownerId`, `openUnits`, `occupiedUnits`, " +
+                "`maintenanceCost`, `currentIncome`) VALUES ('HouseOne', '111 W Quarry', 'Moline', " +
+                "'Iowa', '54321', '1', '1', '1', '0', '1', '100', '500');");
     }
 
     @After
