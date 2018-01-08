@@ -1,5 +1,6 @@
 package com.sutton.rentalApp.dao;
 
+import com.sutton.rentalApp.model.Tenant;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 
 @RunWith(SpringRunner.class)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -56,8 +58,20 @@ public class TenantDaoTest {
     }
 
     @Test
-    public void shouldGetUserFromDatabase(){
-        Assert.assertEquals(true,true);
+    public void shouldGetTenantFromDatabase() {
+        Assert.assertEquals(true, true);
+    }
+
+    @Test
+    public void shouldAddTenantToDatabase() {
+        TenantDao tenantDao = new TenantDaoImpl(jdbcTemplate);
+        Tenant tenant = new Tenant();
+        tenant.setUnitId(1);
+        tenant.setFirstName("John");
+        tenant.setLastName("Doe");
+        tenant.setPhoneNumber("34");
+        tenant.setEmail("jo@jo");
+        Assert.assertEquals(true, tenantDao.addTenant(tenant));
     }
 
 }

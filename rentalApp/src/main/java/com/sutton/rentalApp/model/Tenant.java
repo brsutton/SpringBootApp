@@ -65,15 +65,15 @@ public class Tenant {
         return moveInDate;
     }
 
-    public void setMoveInDate(LocalDate moveInDate) {
-        this.moveInDate = moveInDate;
+    public void setMoveInDate(String moveInDate) {
+        this.moveInDate = LocalDate.parse(moveInDate);
     }
 
     public LocalDate getLeaseExpires() {
         return leaseExpires;
     }
 
-    public void setLeaseExpires(LocalDate leaseExpires) {
-        this.leaseExpires = leaseExpires;
+    public void setLeaseExpires(String leaseExpires) {
+        this.leaseExpires = LocalDate.parse(leaseExpires);
     }
 }
