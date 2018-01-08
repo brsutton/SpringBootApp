@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -85,5 +86,19 @@ public class propertyDaoTest {
         property.setName("house2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
         Assert.assertEquals(false, propertyDao.addProperty(property));
+    }
+
+    @Test
+    public void shouldGetAllPropertiesByOwnerId() {
+        PropertyDao propertyDao = new PropertyDaoImpl(jdbcTemplate);
+        List<Property> list = propertyDao.getPropertiesByOwnerId(1);
+        Assert.assertEquals("HouseOne", list.get(0).getName());
+    }
+
+    @Test
+    public void shouldReturnEmptyListIfNoPropertiesWithOwnerId() {
+        PropertyDao propertyDao = new PropertyDaoImpl(jdbcTemplate);
+        List<Property> list = propertyDao.getPropertiesByOwnerId(3);
+        Assert.assertEquals(0, list.size());
     }
 }

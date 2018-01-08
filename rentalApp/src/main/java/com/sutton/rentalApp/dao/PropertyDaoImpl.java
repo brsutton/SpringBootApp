@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 @Repository
 public class PropertyDaoImpl implements PropertyDao {
@@ -49,5 +50,17 @@ public class PropertyDaoImpl implements PropertyDao {
         }
 
         return success;
+    }
+
+    @Override
+    public List<Property> getPropertiesByOwnerId(int i) {
+        List<Property> properties = null;
+        String sql = "SELECT * FROM property where ownerId = ?;";
+        try {
+            properties = jdbcTemplate.query(sql, new PropertyRowMapper(), new Object[]{i});
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return properties;
     }
 }

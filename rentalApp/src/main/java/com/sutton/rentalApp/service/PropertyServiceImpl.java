@@ -6,6 +6,8 @@ import com.sutton.rentalApp.model.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PropertyServiceImpl implements PropertyService {
 
@@ -22,5 +24,10 @@ public class PropertyServiceImpl implements PropertyService {
 
     public boolean addProperty(Property property) {
         return propertyDao.addProperty(property);
+    }
+
+    @Override
+    public List<Property> getPropertiesByOwnerId(int i) {
+        return propertyDao.getPropertiesByOwnerId(i);
     }
 }
