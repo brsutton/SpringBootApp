@@ -1,5 +1,6 @@
 package com.sutton.rentalApp.dao;
 
+import com.sutton.rentalApp.model.Unit;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,6 +36,7 @@ public class UnitDaoTest {
     public void setUpDatabase() {
         jdbcTemplate.execute("CREATE TABLE `units` (\n" +
                 "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
+                "  `propertyId` INT NOT NULL,\n" +
                 "  `tenantId` INT NULL,\n" +
                 "  `bedrooms` INT NULL,\n" +
                 "  `bathrooms` INT NULL,\n" +
@@ -50,10 +52,11 @@ public class UnitDaoTest {
                 "  `depositHeld` DOUBLE NULL,\n" +
                 "  PRIMARY KEY (`id`),\n" +
                 "  UNIQUE INDEX `id_UNIQUE` (`id` ASC));");
-        jdbcTemplate.execute("INSERT INTO `units` (`tenantId`, `bedrooms`, `bathrooms`, `squareFeet`," +
+
+        jdbcTemplate.execute("INSERT INTO `units` (`tenantId`, `propertyId`, `bedrooms`, `bathrooms`, `squareFeet`," +
                 " `unitName`, `unitDescription`, `unitRent`, `backRent`, `occupied`, `maintenanceNeeded`, " +
                 " `maintenanceDescription`, `maintenanceCost`, `depositHeld`) " +
-                "VALUES ('1', '1', '1', '600', '10', 'Apartment', '500', '0', '1', '0', 'None', '0', '500');");
+                "VALUES ('1', '1', '1', '1', '600', '10', 'Apartment', '500', '0', '1', '0', 'None', '0', '500');");
     }
 
     @After
@@ -71,6 +74,15 @@ public class UnitDaoTest {
     public void shouldReturnEmptyList() {
         UnitDao unitDao = new UnitDaoImpl(jdbcTemplate);
         Assert.assertEquals(null, unitDao.getUnitById(0));
+    }
+
+    @Test
+    public void shouldAddUnitToDatabase(){
+        UnitDao unitDao = new UnitDaoImpl(jdbcTemplate);
+        Unit unit = new Unit();
+        unit.setUnitName("111");
+        unit.setUnitDescription("House Number One");
+        Assert.assertEquals(true, unitDao.addUnit(unit));
     }
 
 }

@@ -6,4 +6,5 @@ public interface UnitDao {
 
     public Unit getUnitById(int id);
 
+    public boolean addUnit(Unit unit);
 }

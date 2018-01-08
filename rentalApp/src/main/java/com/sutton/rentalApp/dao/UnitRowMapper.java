@@ -12,6 +12,7 @@ public class UnitRowMapper implements RowMapper<Unit> {
     public Unit mapRow(ResultSet resultSet, int i) throws SQLException {
         Unit unit = new Unit();
         unit.setId(resultSet.getInt("id"));
+        unit.setPropertyId(resultSet.getInt("propertyId"));
         unit.setTenantId(resultSet.getInt("tenantID"));
         unit.setBedrooms(resultSet.getInt("bedrooms"));
         unit.setBathrooms(resultSet.getInt("bathrooms"));

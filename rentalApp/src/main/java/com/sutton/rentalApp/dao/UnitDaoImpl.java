@@ -50,4 +50,27 @@ public class UnitDaoImpl implements UnitDao {
         }
         return unit;
     }
+
+    @Override
+    public boolean addUnit(Unit unit) {
+        boolean success = true;
+        int result = 0;
+        String sql = "INSERT INTO `units` (`tenantId`, `propertyId`, `bedrooms`, `bathrooms`, `squareFeet`, `unitName`, " +
+                "`unitDescription`, `unitRent`, `backRent`, `occupied`, `maintenanceNeeded`, " +
+                "`maintenanceDescription`, `maintenanceCost`, `depositHeld`) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        try {
+            result = jdbcTemplate.update(sql, unit.getTenantId(), unit.getPropertyId(), unit.getBedrooms(),
+                    unit.getBathrooms(), unit.getSquareFeet(), unit.getUnitName(), unit.getUnitDescription(),
+                    unit.getUnitRent(), unit.getBackRent(), unit.isOccupied(), unit.isMaintenanceNeeded(),
+                    unit.getMaintenanceDescription(), unit.getMaintenanceCost(), unit.getDepositHeld());
+            if (result == 0) {
+                success = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            success = false;
+        }
+        return success;
+    }
 }

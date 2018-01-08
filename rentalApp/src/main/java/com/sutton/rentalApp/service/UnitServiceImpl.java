@@ -15,4 +15,9 @@ public class UnitServiceImpl implements UnitService {
     public Unit getUnitById(int id) {
         return unitDao.getUnitById(id);
     }
+
+    @Override
+    public boolean addUnit(Unit unit) {
+        return unitDao.addUnit(unit);
+    }
 }
