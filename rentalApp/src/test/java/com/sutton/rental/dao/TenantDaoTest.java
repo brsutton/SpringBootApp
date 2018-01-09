@@ -80,4 +80,10 @@ public class TenantDaoTest {
         Assert.assertEquals("John", tenantDao.getTenantByUnitId(1).getFirstName());
     }
 
+    @Test
+    public void shouldReturnNullIfNoUnitIdIsFoundOrNoTenantsInUnit(){
+        TenantDao tenantDao = new TenantDaoImpl(jdbcTemplate);
+        Assert.assertEquals(null, tenantDao.getTenantByUnitId(0));
+    }
+
 }
