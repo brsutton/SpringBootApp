@@ -60,6 +60,25 @@ public class UserDaoImpl implements UserDao {
                 success = false;
             }
         } catch (Exception e) {
+            e.printStackTrace();
+            success = false;
+        }
+
+        return success;
+    }
+
+    @Override
+    public boolean updateUserPassword(User user) {
+        boolean success = true;
+        String sql = "UPDATE `users` SET `password`= ?, `salt`= ? WHERE `id`= ?;";
+        int result = 0;
+        try {
+            result = jdbcTemplate.update(sql, user.getPassword(), user.getSalt(), user.getId());
+            if (result == 0) {
+                success = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
             success = false;
         }
 

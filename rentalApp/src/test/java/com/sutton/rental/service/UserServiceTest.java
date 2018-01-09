@@ -71,4 +71,9 @@ public class UserServiceTest {
         UserService userService = new UserServiceImpl(userDao);
         Assert.assertEquals(null, userService.getUserByLogin(loggingInUser));
     }
+
+//    @Test
+//    public void shouldUpdatePasswordWithNewEncryptedPassword(){
+//
+//    }
 }

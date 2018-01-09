@@ -5,6 +5,7 @@ import com.sutton.rental.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sound.midi.Soundbank;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Random;
@@ -49,6 +50,12 @@ public class UserServiceImpl implements UserService {
         if (user.getLogin() == null || user.getPassword() == null) {
             return false;
         }
+        encryptPasswordAddSalt(user);
+
+        return userDao.addUser(user);
+    }
+
+    private void encryptPasswordAddSalt(User user) {
         String chars = "123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()";
         Random random = new SecureRandom();
         StringBuilder sb = new StringBuilder();
@@ -64,7 +71,15 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return userDao.addUser(user);
+    }
+
+    @Override
+    public boolean updateUserPassword(User user) {
+        if (user.getLogin() == null || user.getPassword() == null) {
+            return false;
+        }
+        encryptPasswordAddSalt(user);
+        return userDao.updateUserPassword(user);
     }
 
 }

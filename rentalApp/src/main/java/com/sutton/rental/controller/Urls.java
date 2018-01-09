@@ -6,4 +6,5 @@ public class Urls {
     public static final String UNIT_URL = "/unit";
     public static final String ALL_UNIT_IN_PROPERTY_URL = "/units";
     public static final String TENANT_URL = "/tenant";
+    public static final String UPDATE_USER_URL = "/update_user";
 }

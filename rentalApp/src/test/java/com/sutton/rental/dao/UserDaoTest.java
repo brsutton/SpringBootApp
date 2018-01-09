@@ -89,4 +89,14 @@ public class UserDaoTest {
         user.setEmail("john@john.com");
         Assert.assertEquals(false, userDao.addUser(user));
     }
+    @Test
+    public void shouldUpdateUserPasswordAndSalt(){
+        UserDao userDao = new UserDaoImpl(jdbcTemplate);
+        User user = userDao.getUserByLogin("john");
+        user.setPassword("hiEveryOneJustKidding");
+        user.setSalt("yesThisSalt");
+        Assert.assertEquals(true, userDao.updateUserPassword(user));
+        user = userDao.getUserByLogin("john");
+        Assert.assertEquals("hiEveryOneJustKidding", user.getPassword());
+    }
 }

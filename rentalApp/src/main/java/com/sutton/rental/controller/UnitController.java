@@ -24,7 +24,7 @@ public class UnitController {
     }
 
     @RequestMapping(value = Urls.ALL_UNIT_IN_PROPERTY_URL + "/{propertyId}", method = RequestMethod.GET)
-    public List<Unit> getAllUnitsInPropertyByPropertyId(@PathVariable("propertyId") int propertyId){
+    public List<Unit> getAllUnitsInPropertyByPropertyId(@PathVariable("propertyId") int propertyId) {
         return unitService.getAllUnitsInPropertyByPropertyId(propertyId);
     }
 }

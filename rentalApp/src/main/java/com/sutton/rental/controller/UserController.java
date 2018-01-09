@@ -22,4 +22,9 @@ public class UserController {
     public boolean addUserToDataBase(@RequestBody User user) {
         return userService.addUser(user);
     }
+
+    @RequestMapping(value = Urls.UPDATE_USER_URL, method = RequestMethod.PUT)
+    public boolean updateUserPassword(@RequestBody User user) {
+        return userService.updateUserPassword(user);
+    }
 }
