@@ -70,4 +70,20 @@ public class TenantDaoImpl implements TenantDao {
         }
         return tenant;
     }
+
+    @Override
+    public List<Tenant> getTenantsByProperty(int propertyId) {
+        List<Tenant> tenants = null;
+        String sql = "SELECT tenant.id, tenant.unitId, tenant.firstName, tenant.lastName, tenant.phoneNumber,\n" +
+                "tenant.email, tenant.moveInDate, tenant.leaseExpires FROM tenant\n" +
+                "join units on tenant.unitId = units.id\n" +
+                "join property on units.propertyId = property.id\n" +
+                "where property.id = ?;";
+        try {
+            tenants = jdbcTemplate.query(sql, new TenantRowMapper(), new Object[]{propertyId});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tenants;
+    }
 }

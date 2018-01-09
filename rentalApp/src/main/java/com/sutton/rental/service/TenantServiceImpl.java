@@ -5,6 +5,8 @@ import com.sutton.rental.model.Tenant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TenantServiceImpl implements TenantService {
 
@@ -19,5 +21,9 @@ public class TenantServiceImpl implements TenantService {
     @Override
     public Tenant getTenantById(int id) {
         return tenantDao.getTenantById(id);
+    }
+
+    public List<Tenant> getTenantsByProperty(int propertyId){
+        return tenantDao.getTenantsByProperty(propertyId);
     }
 }

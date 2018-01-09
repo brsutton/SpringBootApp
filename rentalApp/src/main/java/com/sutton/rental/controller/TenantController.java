@@ -5,6 +5,8 @@ import com.sutton.rental.service.TenantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class TenantController {
 
@@ -21,4 +23,8 @@ public class TenantController {
         return tenantService.getTenantById(id);
     }
 
+    @RequestMapping(value = Urls.TENANT_BY_PROPERTY_URL + "/{propertyId}", method = RequestMethod.GET)
+    public List<Tenant> getTenantsByProperty(@PathVariable("propertyId") int propertyId) {
+        return tenantService.getTenantsByProperty(propertyId);
+    }
 }
