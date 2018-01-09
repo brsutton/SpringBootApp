@@ -35,14 +35,14 @@ public class UserServiceImpl implements UserService {
             user.setPassword(new String(hashedPassword));
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return new User();
         }
         if (dataBaseUser.getPassword().equals(user.getPassword())) {
             dataBaseUser.setPassword("_");
             dataBaseUser.setSalt("_");
             return dataBaseUser;
         }
-        return null;
+        return new User();
     }
 
     @Override
