@@ -7,3 +7,5 @@ Uses Maven.
 Project is still under development.
 
 All existing code in master branch works.
+
+An sql file is included for you to import into mysql.
