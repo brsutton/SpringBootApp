@@ -58,7 +58,7 @@ public class UserServiceTest {
 //    }
 
     @Test
-    public void shouldGetUserFromTheDataBaseAndVerifyTheUserTheUserPasswordIsWrongAndReturnsNull(){
+    public void shouldGetUserFromTheDataBaseAndVerifyTheUserTheUserPasswordIsWrongAndReturnsNullUser(){
         UserDao userDao = mock(UserDaoImpl.class);
         User user = new User();
         user.setLogin("brian");
@@ -69,11 +69,6 @@ public class UserServiceTest {
         loggingInUser.setLogin("brian");
         loggingInUser.setPassword("wrongPassword");
         UserService userService = new UserServiceImpl(userDao);
-        Assert.assertEquals(null, userService.getUserByLogin(loggingInUser));
+        Assert.assertEquals(null, userService.getUserByLogin(loggingInUser).getLogin());
     }
-
-//    @Test
-//    public void shouldUpdatePasswordWithNewEncryptedPassword(){
-//
-//    }
 }
