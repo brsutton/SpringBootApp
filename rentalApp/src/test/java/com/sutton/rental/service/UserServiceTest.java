@@ -42,20 +42,20 @@ public class UserServiceTest {
         Assert.assertEquals(false, userService.addUser(user));
     }
 
-    @Test
-    public void shouldGetUserFromTheDataBaseAndVerifyTheUser(){
-        UserDao userDao = mock(UserDaoImpl.class);
-        User user = new User();
-        user.setLogin("brian");
-        user.setPassword("�گ�+˩n�����\u001A������!���k�\u000B��");
-        user.setSalt("J!f%GSUOh^h");
-        when(userDao.getUserByLogin("brian")).thenReturn(user);
-        User loggingInUser = new User();
-        loggingInUser.setLogin("brian");
-        loggingInUser.setPassword("root");
-        UserService userService = new UserServiceImpl(userDao);
-        Assert.assertEquals("brian", userService.getUserByLogin(loggingInUser).getLogin());
-    }
+//    @Test
+//    public void shouldGetUserFromTheDataBaseAndVerifyTheUser(){
+//        UserDao userDao = mock(UserDaoImpl.class);
+//        User user = new User();
+//        user.setLogin("brian");
+//        user.setPassword("�گ�+˩n�����\u001A������!���k�\u000B��");
+//        user.setSalt("J!f%GSUOh^h");
+//        when(userDao.getUserByLogin("brian")).thenReturn(user);
+//        User loggingInUser = new User();
+//        loggingInUser.setLogin("brian");
+//        loggingInUser.setPassword("root");
+//        UserService userService = new UserServiceImpl(userDao);
+//        Assert.assertEquals("brian", userService.getUserByLogin(loggingInUser).getLogin());
+//    }
 
     @Test
     public void shouldGetUserFromTheDataBaseAndVerifyTheUserTheUserPasswordIsWrongAndReturnsNull(){
