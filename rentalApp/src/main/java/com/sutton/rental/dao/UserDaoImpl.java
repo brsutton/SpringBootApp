@@ -84,4 +84,22 @@ public class UserDaoImpl implements UserDao {
 
         return success;
     }
+
+    @Override
+    public boolean updateUserNameAndEmail(User user) {
+        boolean success = true;
+        String sql = "UPDATE `users` SET `name`= ?, `email`= ? WHERE `id`= ?;";
+        int result = 0;
+        try {
+            result = jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getId());
+            if (result == 0) {
+                success = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            success = false;
+        }
+
+        return success;
+    }
 }

@@ -11,4 +11,5 @@ public interface UserService {
 
     public boolean updateUserPassword(User user);
 
+    public boolean updateUserNameAndEmail(User user);
 }

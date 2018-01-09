@@ -82,4 +82,9 @@ public class UserServiceImpl implements UserService {
         return userDao.updateUserPassword(user);
     }
 
+    @Override
+    public boolean updateUserNameAndEmail(User user) {
+        return userDao.updateUserNameAndEmail(user);
+    }
+
 }

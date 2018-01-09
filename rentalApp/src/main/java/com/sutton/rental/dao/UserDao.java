@@ -9,4 +9,6 @@ public interface UserDao {
     public boolean addUser(User user);
 
     public boolean updateUserPassword(User user);
+
+    public boolean updateUserNameAndEmail(User user);
 }

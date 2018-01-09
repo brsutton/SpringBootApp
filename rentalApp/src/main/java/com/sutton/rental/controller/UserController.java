@@ -27,4 +27,9 @@ public class UserController {
     public boolean updateUserPassword(@RequestBody User user) {
         return userService.updateUserPassword(user);
     }
+
+    @RequestMapping(value = Urls.UPDATE_USER_URL, method = RequestMethod.POST)
+    public boolean updateUserNameAndEmail(@RequestBody User user) {
+        return userService.updateUserNameAndEmail(user);
+    }
 }
