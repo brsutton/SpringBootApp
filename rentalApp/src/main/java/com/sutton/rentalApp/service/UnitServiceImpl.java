@@ -5,6 +5,8 @@ import com.sutton.rentalApp.model.Unit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UnitServiceImpl implements UnitService {
 
@@ -19,5 +21,10 @@ public class UnitServiceImpl implements UnitService {
     @Override
     public boolean addUnit(Unit unit) {
         return unitDao.addUnit(unit);
+    }
+
+    @Override
+    public List<Unit> getAllUnitsInPropertyByPropertyId(int propertyId) {
+        return unitDao.getAllUnitsInPropertyByPropertyId(propertyId);
     }
 }

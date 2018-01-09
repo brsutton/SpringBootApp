@@ -1,7 +1,6 @@
 package com.sutton.rentalApp.controller;
 
 import com.sutton.rentalApp.model.Tenant;
-import com.sutton.rentalApp.model.Unit;
 import com.sutton.rentalApp.service.TenantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

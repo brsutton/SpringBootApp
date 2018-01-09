@@ -85,4 +85,21 @@ public class UnitDaoTest {
         Assert.assertEquals(true, unitDao.addUnit(unit));
     }
 
+    @Test
+    public void shouldGetAllUnitsInAPropertyAndReturnListOfUnits(){
+        jdbcTemplate.execute("INSERT INTO `units` (`tenantId`, `propertyId`, `bedrooms`, `bathrooms`, `squareFeet`," +
+                " `unitName`, `unitDescription`, `unitRent`, `backRent`, `occupied`, `maintenanceNeeded`, " +
+                " `maintenanceDescription`, `maintenanceCost`, `depositHeld`) " +
+                "VALUES ('2', '1', '2', '1', '600', '2', 'Apartment 2', '500', '0', '1', '0', 'None', '0', '500');");
+        UnitDao unitDao = new UnitDaoImpl(jdbcTemplate);
+        Assert.assertEquals(2, unitDao.getAllUnitsInPropertyByPropertyId(1).size());
+        Assert.assertEquals("Apartment 2", unitDao.getAllUnitsInPropertyByPropertyId(1).get(1).getUnitDescription());
+    }
+
+    @Test
+    public void shouldReturnEmptyListIfNoUnitsAreFoundWhenLookingForAllUnitsInProperty(){
+        UnitDao unitDao = new UnitDaoImpl(jdbcTemplate);
+        Assert.assertEquals(0, unitDao.getAllUnitsInPropertyByPropertyId(0).size());
+    }
+
 }

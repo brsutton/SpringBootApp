@@ -73,4 +73,16 @@ public class UnitDaoImpl implements UnitDao {
         }
         return success;
     }
+
+    @Override
+    public List<Unit> getAllUnitsInPropertyByPropertyId(int propertyId) {
+        List<Unit> units = null;
+        String sql = "SELECT * FROM units where propertyId = ?;";
+        try {
+            units = jdbcTemplate.query(sql, new UnitRowMapper(), new Object[]{propertyId});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return units;
+    }
 }
