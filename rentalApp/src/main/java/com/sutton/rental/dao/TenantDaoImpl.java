@@ -86,4 +86,20 @@ public class TenantDaoImpl implements TenantDao {
         }
         return tenants;
     }
+
+    @Override
+    public Tenant getTenantByUnitId(int unitId) {
+        List<Tenant> units = null;
+        Tenant tenant = null;
+        String sql = "SELECT * FROM tenant where unitId = ?;";
+        try {
+            units = jdbcTemplate.query(sql, new TenantRowMapper(), new Object[]{unitId});
+            if (units.size() != 0) {
+                tenant = units.get(0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return tenant;
+    }
 }

@@ -23,6 +23,11 @@ public class TenantController {
         return tenantService.getTenantById(id);
     }
 
+    @RequestMapping(value = Urls.TENANT_BY_UNIT_URL + "/{UnitId}", method = RequestMethod.GET)
+    public Tenant getTenantByUnitId(@PathVariable("UnitId") int unitId) {
+        return tenantService.getTenantByUnitId(unitId);
+    }
+
     @RequestMapping(value = Urls.TENANT_BY_PROPERTY_URL + "/{propertyId}", method = RequestMethod.GET)
     public List<Tenant> getTenantsByProperty(@PathVariable("propertyId") int propertyId) {
         return tenantService.getTenantsByProperty(propertyId);

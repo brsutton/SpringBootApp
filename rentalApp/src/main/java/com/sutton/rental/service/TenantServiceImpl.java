@@ -23,7 +23,13 @@ public class TenantServiceImpl implements TenantService {
         return tenantDao.getTenantById(id);
     }
 
+    @Override
     public List<Tenant> getTenantsByProperty(int propertyId){
         return tenantDao.getTenantsByProperty(propertyId);
+    }
+
+    @Override
+    public Tenant getTenantByUnitId(int unitId) {
+        return tenantDao.getTenantByUnitId(unitId);
     }
 }

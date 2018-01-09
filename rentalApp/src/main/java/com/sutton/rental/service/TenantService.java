@@ -12,4 +12,6 @@ public interface TenantService {
 
     public List<Tenant> getTenantsByProperty(int propertyId);
 
+    public Tenant getTenantByUnitId(int unitId);
+
 }

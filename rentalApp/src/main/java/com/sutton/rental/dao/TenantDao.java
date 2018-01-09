@@ -11,4 +11,6 @@ public interface TenantDao {
     public Tenant getTenantById(int id);
 
     public List<Tenant> getTenantsByProperty(int propertyId);
+
+    public Tenant getTenantByUnitId(int unitId);
 }
