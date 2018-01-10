@@ -42,14 +42,49 @@ public class PhotoDaoImpl implements PhotoDao {
         PropertyPhoto propertyPhoto = new PropertyPhoto();
         List<PropertyPhoto> list;
         try {
-            list = jdbcTemplate.query(sql,new PropertyPhotoRowMapper(), propertyId);
-            if(list.size()!=0){
+            list = jdbcTemplate.query(sql, new PropertyPhotoRowMapper(), propertyId);
+            if (list.size() != 0) {
                 propertyPhoto = list.get(0);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
         return propertyPhoto;
     }
+
+    @Override
+    public boolean addPropertyPhoto(PropertyPhoto propertyPhoto) {
+        boolean success = true;
+        String sql = "INSERT INTO property_photos (propertyId, photoFileLocation) VALUES (?, ?)";
+        int result = 0;
+        try {
+            result = jdbcTemplate.update(sql, propertyPhoto.getPropertyId(), propertyPhoto.getPhotoFileLocation());
+            if (result == 0) {
+                success = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            success = false;
+        }
+        return success;
+    }
+
+    @Override
+    public boolean updatePropertyPhotoFileLocation(PropertyPhoto propertyPhoto) {
+        boolean success = true;
+        String sql = "UPDATE `property_photos` SET `photoFileLocation`=? WHERE `id`=?;";
+        int result = 0;
+        try {
+            result = jdbcTemplate.update(sql, propertyPhoto.getPhotoFileLocation(), propertyPhoto.getId());
+            if (result == 0) {
+                success = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            success = false;
+        }
+        return success;
+    }
+
+
 }

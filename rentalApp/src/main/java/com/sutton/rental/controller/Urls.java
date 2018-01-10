@@ -14,7 +14,7 @@ public class Urls {
 
     public static final String PROPERTY_URL = "/property";
 
-    public static final String PROPERTY_PHOTO_URL = "/property_photo/{propertyId}";
+    public static final String PROPERTY_PHOTO_URL = "/property_photo";
 
     public static final String UNIT_PHOTO_URL = "/unit_photo";
 
