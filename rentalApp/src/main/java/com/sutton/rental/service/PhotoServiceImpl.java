@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -33,6 +36,7 @@ public class PhotoServiceImpl implements PhotoService {
             try {
                 photoDao.updatePropertyPhotoFileLocation(propertyPhoto);
                 multipartFile.transferTo(new File(propertyPhoto.getPhotoFileLocation()));
+                resizeImage(propertyPhoto);
             } catch (IOException e) {
                 e.printStackTrace();
                 success = false;
@@ -44,5 +48,17 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public boolean addPropertyPhoto(PropertyPhoto propertyPhoto) {
         return photoDao.addPropertyPhoto(propertyPhoto);
+    }
+
+    private void resizeImage(PropertyPhoto propertyPhoto) {
+        try {
+            BufferedImage img = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
+            img.createGraphics().drawImage(ImageIO
+                    .read(new File(propertyPhoto.getPhotoFileLocation()))
+                    .getScaledInstance(100, 100, Image.SCALE_SMOOTH), 0, 0, null);
+            ImageIO.write(img, "jpg", new File(propertyPhoto.getPhotoFileLocation()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
