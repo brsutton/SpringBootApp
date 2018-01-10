@@ -54,6 +54,31 @@ INSERT INTO `property` VALUES (1,'2nd Street Apartments','212 2nd Street','Daven
 UNLOCK TABLES;
 
 --
+-- Table structure for table `property_photos`
+--
+
+DROP TABLE IF EXISTS `property_photos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `property_photos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `propertyId` int(11) DEFAULT NULL,
+  `photoFileLocation` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `property_photos`
+--
+
+LOCK TABLES `property_photos` WRITE;
+/*!40000 ALTER TABLE `property_photos` DISABLE KEYS */;
+INSERT INTO `property_photos` VALUES (1,1,'C:/propertyPhotos/1.jpg'),(2,2,'C:/propertyPhotos/2.jpg'),(7,4,'C:/propertyPhotos/4.jpg'),(8,5,'C:/propertyPhotos/5.jpg');
+/*!40000 ALTER TABLE `property_photos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tenant`
 --
 
@@ -80,7 +105,7 @@ CREATE TABLE `tenant` (
 
 LOCK TABLES `tenant` WRITE;
 /*!40000 ALTER TABLE `tenant` DISABLE KEYS */;
-INSERT INTO `tenant` VALUES (1,1,'Brian','Node','563211234','brian@brian.com','2018-01-15','2018-07-15'),(2,1,'John','Doe','123456789','john@doe.com','2018-01-15','2018-07-15'),(3,1,'John','Doe','123456789','john@doe.com','2018-01-15','2018-07-15');
+INSERT INTO `tenant` VALUES (1,2,'Brian','Node','563211234','brian@brian.com','2018-01-15','2018-07-15'),(2,3,'John','Doe','123456789','john@doe.com','2018-01-15','2018-07-15'),(3,4,'John','Doe','123456789','john@doe.com','2018-01-15','2018-07-15');
 /*!40000 ALTER TABLE `tenant` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +164,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +173,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'john','*Ԣ��K�:�y�R��C��hl��?�!�','#Jv*UXHs4R$','John Doe','john@john.com');
+INSERT INTO `users` VALUES (1,'john','8�V��\'�I�����%�?�/�ٸ���.�Wٙ�','aR4X@RFUJi8','Hank','hank@john.com'),(3,'john2','và4á-pD#P¦h�»¥Ú”J‹;öÑ™ÅuÙy;¬Q','ltiG81iov5b','John Doe','john@john.com');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -161,4 +186,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-09 10:28:56
+-- Dump completed on 2018-01-10 16:25:13
