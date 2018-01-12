@@ -1,4 +1,4 @@
-Spring Boot application.
+Spring Boot version 1.5.9 application.
 
 This is a Spring Boot Rest API for a property rental service.
 
